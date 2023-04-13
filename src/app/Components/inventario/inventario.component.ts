@@ -7,7 +7,7 @@ import { ApiService } from 'src/app/Services/api.service';
 
 @Component({
   selector: 'app-inventario',
-  templateUrl: './inventario.component.html', hola
+  templateUrl: './inventario.component.html',
   styleUrls: ['./inventario.component.css']
 })
 export class InventarioComponent implements OnInit,AfterViewInit{
@@ -18,7 +18,10 @@ export class InventarioComponent implements OnInit,AfterViewInit{
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   
-constructor(public api:ApiService){}
+constructor(public api:ApiService){
+
+  this.dataSource=new MatTableDataSource();
+}
 
   ngOnInit(): void{
     this.getInventario();
