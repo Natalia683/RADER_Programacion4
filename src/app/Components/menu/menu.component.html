@@ -1,0 +1,32 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+      [attr.role]="(isWeb$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isWeb$ | async) ? 'over' : 'side'"
+      [opened]="(isWeb$ | async) === false">
+    <mat-toolbar><span class="material-symbols-outlined">home</span>Menu</mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item href="/Cliente"><span class="material-symbols-outlined">group</span>Cliente</a>
+      <a mat-list-item href="/Dashboard"><span class="material-symbols-outlined"> dashboard</span>Dashboard</a>
+      <a mat-list-item href="/Historial"><span class="material-symbols-outlined">history</span>Historial</a>
+      <a mat-list-item href="/Inventario"><span class="material-symbols-outlined">inventory</span>Inventario</a>
+      <a mat-list-item href="/Mantenimiento"><span class="material-symbols-outlined"> engineering</span>Mantenimiento</a>
+      <a mat-list-item href="/PQR"><span class="material-symbols-outlined">forum</span>PQR</a>
+      <a mat-list-item href="/Form"><span class="material-symbols-outlined"> description</span>Formulario</a>
+      <a mat-list-item href="/Tabla"><span class="material-symbols-outlined"> table</span>Tabla</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar class="toolbar">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isWeb$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span><img src="./assets/logo.png">RADER</span>
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
