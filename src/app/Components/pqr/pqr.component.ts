@@ -12,7 +12,7 @@ export class PQRComponent implements OnInit{
   constructor(public api:ApiService){}
   
     ngOnInit(): void{
-      var response = this.api.getAll("Solicituds")
+      var response = this.api.Get("Solicituds")
       console.log(response);
     }
 }

@@ -12,7 +12,7 @@ export class HistorialComponent implements OnInit{
   constructor(public api:ApiService){}
   
     ngOnInit(): void{
-      var response = this.api.getAll("Historials")
+      var response = this.api.Get("Historials")
       console.log(response);
     }
 }

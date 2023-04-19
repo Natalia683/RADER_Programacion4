@@ -5,6 +5,7 @@ import { DashboardComponent } from './Components/dashboard/dashboard.component';
 import { FormComponent } from './Components/form/form.component';
 import { HistorialComponent } from './Components/historial/historial.component';
 import { InventarioComponent } from './Components/inventario/inventario.component';
+import { LoginComponent } from './Components/login/login.component';
 import { MantenimientoComponent } from './Components/mantenimiento/mantenimiento.component';
 import { PQRComponent } from './Components/pqr/pqr.component';
 import { TablaComponent } from './Components/tabla/tabla.component';
@@ -17,7 +18,8 @@ const routes: Routes = [
 {path: "Mantenimiento",component:MantenimientoComponent},
 {path: "PQR",component:PQRComponent},
 {path: "Form",component:FormComponent},
-{path: "Tabla",component:TablaComponent}
+{path: "Tabla",component:TablaComponent},
+{path: "Login",component:LoginComponent},
 
 
 ];
