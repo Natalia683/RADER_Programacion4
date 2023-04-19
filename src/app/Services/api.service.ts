@@ -14,14 +14,15 @@ url= "https://localhost:7151/api/"
   async Get(controller:string){
     var response: any
 
-    await this.http.get(this.url+controller).subscribe(res=>{ 
+    await this.http.get(this.url+controller).toPromise().then((res=>{ 
       response=res
      console.log(res);
     }
         )
-      
-      return response
+      )
+      return response;
   }  
+
   async Put(controller:string, id:string, body:any){
     var response: any
     await this.http.put(this.url+controller+"/"+ id,body).subscribe(res=>{
