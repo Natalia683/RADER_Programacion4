@@ -11,7 +11,7 @@ export class ClienteComponent implements OnInit{
   constructor(public api:ApiService){}
   
     ngOnInit(): void{
-      var response = this.api.getAll("Personas")
+      var response = this.api.Get("Personas")
       console.log(response);
       
     }

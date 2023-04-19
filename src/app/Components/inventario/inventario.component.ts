@@ -34,7 +34,7 @@ ngAfterViewInit(){
 
 public async getInventario(){
 
-await this.api.getAll("Inventario").then((res)=>{
+await this.api.Get("Inventarios").then((res)=>{
   for (let index = 0; index < res.length; index++){
     this.loadTable([res[index]])
 

@@ -10,20 +10,21 @@ export class ApiService {
 
 
 url= "https://localhost:7151/api/"
-  async getAll(Controller:string){
+
+  async Get(controller:string){
     var response: any
 
-    await this.http.get(this.url+Controller).subscribe(res=>{ 
+    await this.http.get(this.url+controller).subscribe(res=>{ 
       response=res
      console.log(res);
     }
         )
       
-      return response;
+      return response
   }  
-  async put(Controller:string, id:string, body:any){
+  async Put(controller:string, id:string, body:any){
     var response: any
-    await this.http.put(this.url+Controller+"/"+id,body).subscribe(res=>{
+    await this.http.put(this.url+controller+"/"+ id,body).subscribe(res=>{
         response=res
 
     }
@@ -31,34 +32,24 @@ url= "https://localhost:7151/api/"
       )
       return response;
   }  
-  async delete(Controller:string, id:string){
+  async Delete(controller:string, id:string){
     var response: any
-    await this.http.delete(this.url+Controller+"/").subscribe(res=>{
+    await this.http.delete(this.url+controller+"/"+id).subscribe(res=>{
         response=res
 
     }
         )
       return response;
   }  
-  async post(Controller:string,body:any){
+  async Post(controller:string, body:any){
     var response: any
-    await this.http.post(this.url+Controller,body).subscribe(res=>{
+    await this.http.post(this.url+controller, body).subscribe(res=>{
         response=res
 
     }
         )
       
-      return response;
+      return response
   }  
-  async get(Controller:string,data:any){
-    var response: any
-    await this.http.get<any>(this.url,data).toPromise().then((res=>{
-        response=res
-
-    }
-        )
-      )
-      return response;
-  }  
-
+  
 }

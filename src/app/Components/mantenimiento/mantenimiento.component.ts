@@ -11,7 +11,7 @@ export class MantenimientoComponent implements OnInit{
   constructor(public api:ApiService){}
   
     ngOnInit(): void{
-      var response = this.api.getAll("Mantenimientoes")
+      var response = this.api.Get("Mantenimientoes")
       console.log(response);
     }
 }

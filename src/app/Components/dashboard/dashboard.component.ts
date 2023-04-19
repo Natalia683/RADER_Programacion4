@@ -11,7 +11,7 @@ export class DashboardComponent implements OnInit{
   constructor(public api:ApiService){}
   
     ngOnInit(): void{
-      var response = this.api.getAll("Dispositivoes")
+      var response = this.api.Get("Dispositivoes")
       console.log(response);
     
     }
