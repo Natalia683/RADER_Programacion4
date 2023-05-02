@@ -3,6 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ApiService } from 'src/app/Services/api.service';
+import { TableService } from 'src/app/Services/table.service';
 
 @Component({
   selector: 'app-mantenimiento',
@@ -18,7 +19,7 @@ export class MantenimientoComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(public api: ApiService) {
+  constructor(public api: ApiService, public tableService: TableService) {
     this.dataSource = new MatTableDataSource();
   }
 
@@ -35,6 +36,7 @@ export class MantenimientoComponent implements OnInit, AfterViewInit {
     this.api.Get('Mantenimientoes').then((res) => {
       this.loadTable(res);
       this.dataSource.data = res;
+      this.tableService.responseTable=res;
     });
   }
 
@@ -45,6 +47,7 @@ export class MantenimientoComponent implements OnInit, AfterViewInit {
     for(let nombre of Object.keys(objeto)) {
       this.displayedColumns.push(nombre);
     }
+    this.tableService.displayedColumnsTable=this.displayedColumns
   }
 
   applyFilter(event: Event) {
