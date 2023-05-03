@@ -28,5 +28,4 @@ export class HistorialComponent implements OnInit{
       this.data = res;
     });
   }
-  applyFilter(event: Event) {
 }
