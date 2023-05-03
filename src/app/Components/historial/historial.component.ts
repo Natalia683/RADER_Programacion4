@@ -1,6 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
+import {Component, OnInit} from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { ApiService } from 'src/app/Services/api.service';
 import { TableService } from 'src/app/Services/table.service';
@@ -11,13 +9,11 @@ import { TableService } from 'src/app/Services/table.service';
   styleUrls: ['./historial.component.css']
 })
 
-export class HistorialComponent implements OnInit, AfterViewInit {
+export class HistorialComponent implements OnInit{
   displayedColumns: string[] ;
 
   dataSource: MatTableDataSource<any>;
-
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
+  data:any []
 
   constructor(public api: ApiService, public tableService: TableService) {
     this.dataSource = new MatTableDataSource();
@@ -27,16 +23,9 @@ export class HistorialComponent implements OnInit, AfterViewInit {
     this.GetHistorial();
   }
 
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-  }
-
   public async GetHistorial() {
     this.api.Get('Historials').then((res) => {
-      this.loadTable(res);
       this.dataSource.data = res;
-      this.tableService.responseTable=res;
     });
   }
 
@@ -47,7 +36,6 @@ export class HistorialComponent implements OnInit, AfterViewInit {
     for(let nombre of Object.keys(objeto)) {
       this.displayedColumns.push(nombre);
     }
-    this.tableService.displayedColumnsTable=this.displayedColumns
   }
 
   applyFilter(event: Event) {
