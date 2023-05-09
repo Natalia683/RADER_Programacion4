@@ -1,0 +1,80 @@
+
+
+span{
+  
+    padding: 5%;
+}
+img{
+
+
+    width: 200px;
+    height: 100%;
+   
+
+}
+.Contenedor {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding-top: 5%;
+    background-color: rgb(152, 251, 152);
+    
+  }
+  
+  h1 {
+    padding-block-end: 1% ;
+    font-size: 2rem;
+    margin-bottom: 30px;
+    color: green;
+    
+  }
+  
+  .email,
+  .password {
+    width: 80%;
+    margin-bottom: 20px;
+  }
+  
+  button {
+    width: 100%;
+    margin-top: 10px;
+    color: green;
+  }
+  
+  a {
+    margin-top: 20px;
+    text-align: center;
+    display: block;
+  }
+  
+  mat-form-field {
+    width: 100%;
+  }
+  
+  mat-error {
+    color: red;
+    font-size: 0.8rem;
+    margin-top: 4px;
+  }
+ 
+  .botom button {
+    background-color: #4CAF50;
+    color: black;
+  }
+  
+  @media screen and (min-width: 600px) {
+    .Contenedor {
+      width: 20%;
+      margin: 0 auto;
+      padding: 5%;
+      
+    }
+  
+    h1 {
+      font-size: 3rem;
+    }
+  }
+  
