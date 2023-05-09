@@ -10,6 +10,7 @@ import { ApiService } from 'src/app/Services/api.service';
 
 
 export class PQRComponent implements OnInit{
+  
   displayedColumns: string[] ;
 
   dataSource: MatTableDataSource<any>;
@@ -29,5 +30,4 @@ export class PQRComponent implements OnInit{
       this.dataSource.data = res;
     });
   }
-
 }

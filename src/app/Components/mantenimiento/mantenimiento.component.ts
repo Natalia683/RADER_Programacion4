@@ -1,6 +1,7 @@
 import {Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { ApiService } from 'src/app/Services/api.service';
+import { TableService } from 'src/app/Services/table.service';
 
 @Component({
   selector: 'app-mantenimiento',

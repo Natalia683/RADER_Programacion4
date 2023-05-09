@@ -30,6 +30,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { HttpClientModule } from '@angular/common/http';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { TableComponent } from './Components/table/table.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     MenuComponent,
     LoginComponent,
     FormComponent,
-    TablaComponent
+    TablaComponent,
+    TableComponent
   ],
   imports: [
     HttpClientModule,
