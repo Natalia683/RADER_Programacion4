@@ -30,6 +30,12 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { HttpClientModule } from '@angular/common/http';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { FormularioClienteComponent } from './Form/Formulario_Cliente/formulario-cliente/formulario-cliente.component';
+import { FormularioDashboardComponent } from './Form/Formulario_Dashboard/formulario-dashboard/formulario-dashboard.component';
+import { FormularioHistorialComponent } from './Form/Formulario_Historial/formulario-historial/formulario-historial.component';
+import { FormularioInventarioComponent } from './Form/Formulario_Inventario/formulario-inventario/formulario-inventario.component';
+import { FormularioMantenimientoComponent } from './Form/Formulario_Mantenimiento/formulario-mantenimiento/formulario-mantenimiento.component';
+import { FormularioPQRComponent } from './Form/Formulario_PQR/formulario-pqr/formulario-pqr.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +49,14 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     MenuComponent,
     LoginComponent,
     FormComponent,
-    TablaComponent
+    TablaComponent,
+   
+    FormularioClienteComponent,
+         FormularioDashboardComponent,
+         FormularioHistorialComponent,
+         FormularioInventarioComponent,
+         FormularioMantenimientoComponent,
+         FormularioPQRComponent
   ],
   imports: [
     HttpClientModule,
