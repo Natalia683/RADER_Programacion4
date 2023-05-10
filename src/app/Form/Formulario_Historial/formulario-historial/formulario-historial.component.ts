@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-formulario-historial',
@@ -41,7 +42,25 @@ import { FormBuilder, Validators } from '@angular/forms';
     this.Inc=this.addressForm.controls["IncidenciasH"].value;
     this.Comp=this.addressForm.controls["ComponenteH"].value;
     this.Usu=this.addressForm.controls["UsuarioH"].value;
+    if (this.Fec!==null && this.Nov!==null && this.Sug!==null && this.Inc!==null && this.Comp!==null && this.Usu!==null){
 
+      Swal.fire(
+        'Muy Bien',
+        'Se ha logrado correctamente',
+        'success'
+    
+       )
+    }else{
+     
+      Swal.fire({
+      icon: 'error',
+      title:'Opps...',
+      text: 'Datos incorrectos',
+      footer:'intentelo de nuevo'
+
+      })
+   
+     }
     console.log(this.IdHis);
     console.log(this.Fec);
     console.log(this.Nov);
