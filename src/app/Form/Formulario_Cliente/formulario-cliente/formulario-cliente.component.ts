@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-formulario-cliente',
@@ -15,12 +16,12 @@ export class FormularioClienteComponent {
   corrP="";
 
   addressForm = this.fb.group({
-    IdPersona: ['', Validators.required],
-    NombreP: ['', Validators.required],
-    ApellidoP: ['', Validators.required],
-    DireccionP: ['', Validators.required],
-    TelefonoP: ['', Validators.required],
-    CorreoP: ['', Validators.required],
+    IdPersona: [null, Validators.required],
+    NombreP: [null, Validators.required],
+    ApellidoP: [null, Validators.required],
+    DireccionP: [null, Validators.required],
+    TelefonoP: [null, Validators.required],
+    CorreoP: [null, Validators.required],
 
   });
 
@@ -36,6 +37,25 @@ export class FormularioClienteComponent {
     this.telP=this.addressForm.controls["TelefonoP"].value;
     this.corrP=this.addressForm.controls["CorreoP"].value;
 
+    if (this.nomP!==null && this.apellP!==null && this.dirP!==null && this.telP!==null && this.corrP!==null){
+
+      Swal.fire(
+        'Muy Bien',
+        'Se ha logrado correctamente',
+        'success'
+    
+       )
+    }else{
+     
+      Swal.fire({
+      icon: 'error',
+      title:'Opps...',
+      text: 'Datos incorrectos',
+      footer:'intentelo de nuevo'
+
+      })
+   
+     }
     console.log(this.IdPers);
     console.log(this.nomP);
     console.log(this.apellP);

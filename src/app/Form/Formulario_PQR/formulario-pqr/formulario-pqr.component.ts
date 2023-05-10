@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-formulario-pqr',
@@ -13,7 +14,7 @@ export class FormularioPQRComponent {
     Usu:""; 
     Disp:"";
 
-  addressForm = this.fb.group({
+    addressForm = this.fb.group({
     IdSolicitud:  [null, Validators.required],
     TipoS: [null, Validators.required],
     DescripcionS: [null, Validators.required],
@@ -36,6 +37,30 @@ export class FormularioPQRComponent {
     this.Usu=this.addressForm.controls["UsuarioS"].value;
     this.Disp=this.addressForm.controls["DispositivoS"].value;
     
+    if(this.Tip!== null && this.Desc!== null && this.Usu!== null && this.Disp!==null){
+    
+      Swal.fire(
+        'Muy Bien',
+        'Se ha logrado correctamente',
+        'success'
+    
+       )
+
+
+    }else{
+     
+      Swal.fire({
+      icon: 'error',
+      title:'Opps...',
+      text: 'Datos incorrectos',
+      footer:'intentelo de nuevo'
+   
+   
+   
+      })
+   
+   
+     }
     
     console.log(this.IdSol);
     console.log(this.Tip);

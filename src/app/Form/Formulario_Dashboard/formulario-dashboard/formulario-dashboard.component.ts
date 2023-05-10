@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-formulario-dashboard',
@@ -38,6 +39,25 @@ export class FormularioDashboardComponent {
     this.PesoD=this.addressForm.controls["PesoD"].value;
     this.EmprD=this.addressForm.controls["EmprD"].value;
     
+    if (this.NomD!==null && this.LargD!==null && this.AltoD!==null && this.AnchoD!==null && this.PesoD!==null && this.EmprD!==null){
+
+      Swal.fire(
+        'Muy Bien',
+        'Se ha logrado correctamente',
+        'success'
+    
+       )
+    }else{
+     
+      Swal.fire({
+      icon: 'error',
+      title:'Opps...',
+      text: 'Datos incorrectos',
+      footer:'intentelo de nuevo'
+
+      })
+   
+     }
     console.log(this.IdDis);
     console.log(this.NomD);
     console.log(this.LargD);

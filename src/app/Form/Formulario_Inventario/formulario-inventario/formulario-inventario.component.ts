@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-formulario-inventario',
@@ -35,7 +36,26 @@ export class FormularioInventarioComponent {
     this.Prov=this.addressForm.controls["ProveedorI"].value;
     this.Comp=this.addressForm.controls["ComponenteI"].value;
     this.Esta=this.addressForm.controls["EstadoI"].value;
+ 
+    if (this.Descr!==null && this.Cant!==null && this.Prov!==null && this.Comp!==null && this.Esta!==null){
 
+      Swal.fire(
+        'Muy Bien',
+        'Se ha logrado correctamente',
+        'success'
+    
+       )
+    }else{
+     
+      Swal.fire({
+      icon: 'error',
+      title:'Opps...',
+      text: 'Datos incorrectos',
+      footer:'intentelo de nuevo'
+
+      })
+   
+     }
     console.log(this.IdInv);
     console.log(this.Descr);
     console.log(this.Cant);
