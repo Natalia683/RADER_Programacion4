@@ -32,6 +32,7 @@ export class TablaComponent implements AfterViewInit {
   }
 
   ngOnChanges(changes: SimpleChanges) {
+    console.log(changes);
     if (changes['data'] && this.data) {
       this.loadTable();
     }
