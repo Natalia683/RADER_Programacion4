@@ -56,7 +56,7 @@ import { FormularioPQRComponent } from './Form/Formulario_PQR/formulario-pqr/for
          FormularioHistorialComponent,
          FormularioInventarioComponent,
          FormularioMantenimientoComponent,
-         FormularioPQRComponent
+         FormularioPQRComponent,
   ],
   imports: [
     HttpClientModule,
