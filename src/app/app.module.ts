@@ -36,6 +36,7 @@ import { FormularioHistorialComponent } from './Form/Formulario_Historial/formul
 import { FormularioInventarioComponent } from './Form/Formulario_Inventario/formulario-inventario/formulario-inventario.component';
 import { FormularioMantenimientoComponent } from './Form/Formulario_Mantenimiento/formulario-mantenimiento/formulario-mantenimiento.component';
 import { FormularioPQRComponent } from './Form/Formulario_PQR/formulario-pqr/formulario-pqr.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { FormularioPQRComponent } from './Form/Formulario_PQR/formulario-pqr/for
     LoginComponent,
     FormComponent,
     TablaComponent,
+    
    
     FormularioClienteComponent,
          FormularioDashboardComponent,
@@ -77,7 +79,8 @@ import { FormularioPQRComponent } from './Form/Formulario_PQR/formulario-pqr/for
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

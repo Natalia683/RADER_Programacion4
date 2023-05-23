@@ -1,3 +1,28 @@
 .full-width-table {
   width: 100%;
 }
+.borrar:hover {
+  color: #f57d7d;
+}
+.editar:hover {
+  color: #41caff;
+}
+
+.editar {
+  color: #216BED;
+  font-size: 2vw;
+  padding: 0 0 0 0;
+  margin: 0 0 0 0;
+  width: 2vw;
+  height: 2vw;
+}
+.borrar {
+  color: #C33331 ;
+  font-size: 2vw;
+  padding: 0 0 0 0;
+  margin: 0 0 0 0;
+  width: 2vw;
+  height: 2vw;
+}
+
+
