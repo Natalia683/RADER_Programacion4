@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
+import { FormularioClienteComponent } from 'src/app/Form/Formulario_Cliente/formulario-cliente/formulario-cliente.component';
 import { ApiService } from 'src/app/Services/api.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { ApiService } from 'src/app/Services/api.service';
 })
 export class ClienteComponent implements OnInit{
   displayedColumns: string[] ;
-
+  modal: any;
   dataSource: MatTableDataSource<any>;
   data:any []
 
@@ -23,9 +24,14 @@ export class ClienteComponent implements OnInit{
 
   public async GetCliente() {
     this.api.Get('Personas').then((res) => {
-      this.dataSource.data =res
-      this.data = res;
+      let acciones=res;
+      acciones = res.map(dato => ({ ...dato, Acciones: '' }));
+      this.dataSource.data =acciones;
+      this.data = acciones;
+     
     });
+ 
+    this.modal=FormularioClienteComponent;
   }
 
  
