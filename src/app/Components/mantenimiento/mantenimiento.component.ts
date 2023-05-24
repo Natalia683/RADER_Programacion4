@@ -1,5 +1,6 @@
 import {Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
+import { FormularioMantenimientoComponent } from 'src/app/Form/Formulario_Mantenimiento/formulario-mantenimiento/formulario-mantenimiento.component';
 import { ApiService } from 'src/app/Services/api.service';
 import { TableService } from 'src/app/Services/table.service';
 
@@ -11,7 +12,7 @@ import { TableService } from 'src/app/Services/table.service';
 
 export class MantenimientoComponent implements OnInit{
   displayedColumns: string[] ;
-
+  modal:any;
   dataSource: MatTableDataSource<any>;
    data:any []
 
@@ -26,9 +27,13 @@ export class MantenimientoComponent implements OnInit{
 
   public async GetMantenimiento() {
     this.api.Get('Mantenimientoes').then((res) => {
-      this.dataSource.data =res
-      this.data = res;
+      let acciones=res;
+      acciones = res.map(dato => ({ ...dato, Acciones: '' }));
+      this.dataSource.data =acciones;
+      this.data = acciones;
     });
+
+    this.modal=FormularioMantenimientoComponent;
   }
 
   

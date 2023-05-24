@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
+import { FormularioHistorialComponent } from 'src/app/Form/Formulario_Historial/formulario-historial/formulario-historial.component';
 import { ApiService } from 'src/app/Services/api.service';
 
 @Component({
@@ -10,9 +11,10 @@ import { ApiService } from 'src/app/Services/api.service';
 
 export class HistorialComponent implements OnInit{
   displayedColumns: string[] ;
-
+  modal: any;
   dataSource: MatTableDataSource<any>;
   data:any []
+
 
   constructor(public api: ApiService) {
     this.dataSource = new MatTableDataSource();
@@ -24,8 +26,12 @@ export class HistorialComponent implements OnInit{
 
   public async GetHistorial() {
     this.api.Get('Historials').then((res) => {
-      this.dataSource.data = res;
-      this.data = res;
+      let acciones=res;
+      acciones = res.map(dato => ({ ...dato, Acciones: '' }));
+      this.dataSource.data =acciones;
+      this.data = acciones;
     });
+    
+    this.modal=FormularioHistorialComponent;
   }
 }

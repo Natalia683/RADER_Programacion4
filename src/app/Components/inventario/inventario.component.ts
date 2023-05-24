@@ -1,6 +1,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
+import { FormularioInventarioComponent } from 'src/app/Form/Formulario_Inventario/formulario-inventario/formulario-inventario.component';
 import { ApiService } from 'src/app/Services/api.service';
 
 @Component({
@@ -11,9 +12,9 @@ import { ApiService } from 'src/app/Services/api.service';
 export class InventarioComponent implements OnInit{
  
   displayedColumns: string[];
-
+  modal:any;
   dataSource: MatTableDataSource<any>;
-  data:any []
+  data:any [];
 
 constructor(public api:ApiService){
 
@@ -27,9 +28,13 @@ constructor(public api:ApiService){
 
   public async GetInventario() {
     this.api.Get('Inventarios').then((res) => {
-      this.data = res;
-      this.dataSource.data = res;
+      let acciones=res;
+      acciones = res.map(dato => ({ ...dato, Acciones: '' }));
+      this.dataSource.data =acciones;
+      this.data = acciones;
     });
+
+    this.modal=FormularioInventarioComponent;
   }
 
 
