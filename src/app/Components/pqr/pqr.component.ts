@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
+import { FormularioPQRComponent } from 'src/app/Form/Formulario_PQR/formulario-pqr/formulario-pqr.component';
 import { ApiService } from 'src/app/Services/api.service';
 
 @Component({
@@ -12,7 +13,7 @@ import { ApiService } from 'src/app/Services/api.service';
 export class PQRComponent implements OnInit{
   
   displayedColumns: string[] ;
-
+  modal:any;
   dataSource: MatTableDataSource<any>;
   data:any []
 
@@ -26,8 +27,12 @@ export class PQRComponent implements OnInit{
 
   public async GetPQR() {
     this.api.Get('Solicituds').then((res) => {
-      this.data = res;
-      this.dataSource.data = res;
+      let acciones=res;
+      acciones = res.map(dato => ({ ...dato, Acciones: '' }));
+      this.dataSource.data =acciones;
+      this.data = acciones;
     });
+
+    this.modal=FormularioPQRComponent;
   }
 }
