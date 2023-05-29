@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { FormularioHistorialComponent } from 'src/app/Form/Formulario_Historial/formulario-historial/formulario-historial.component';
 import { ApiService } from 'src/app/Services/api.service';
@@ -10,6 +10,7 @@ import { ApiService } from 'src/app/Services/api.service';
 })
 
 export class HistorialComponent implements OnInit{
+  @ViewChild('appTabla') appTabla: any; 
   displayedColumns: string[] ;
   modal: any;
   dataSource: MatTableDataSource<any>;
@@ -31,7 +32,7 @@ export class HistorialComponent implements OnInit{
       this.dataSource.data =acciones;
       this.data = acciones;
     });
-    
+
     this.modal=FormularioHistorialComponent;
   }
 }

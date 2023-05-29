@@ -9,7 +9,7 @@
     <ng-container matColumnDef="{{disCol}}" *ngFor="let disCol of displayedColumns">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>{{disCol}}</th>
       <td mat-cell *matCellDef="let element">
-        <ng-container *ngIf="disCol === 'Acciones'"><a (click)="mostrarModal()"><mat-icon class="editar">edit</mat-icon></a><a (click)="alerta()"><mat-icon class="borrar">delete</mat-icon></a></ng-container>
+        <ng-container *ngIf="disCol === 'Acciones'"><a (click)="mostrarModal(element)"><mat-icon class="editar">edit</mat-icon></a><a (click)="alerta(element)"><mat-icon class="borrar">delete</mat-icon></a></ng-container>
         <ng-container *ngIf="disCol !== 'Acciones'">{{element[disCol]}}</ng-container>
       </td>
     </ng-container>

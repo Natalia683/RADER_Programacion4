@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { Component,OnInit } from '@angular/core';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { FormsService } from 'src/app/Services/forms.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -7,7 +8,7 @@ import Swal from 'sweetalert2';
   templateUrl: './formulario-cliente.component.html',
   styleUrls: ['./formulario-cliente.component.css']
 })
-export class FormularioClienteComponent {
+export class FormularioClienteComponent implements OnInit {
   IdPers="";
   nomP="";
   apellP="";
@@ -27,7 +28,7 @@ export class FormularioClienteComponent {
 
   hasUnitNumber = false;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private forms:FormsService) {}
 
   async onSubmit(){
     this.IdPers=this.addressForm.controls["IdPersona"].value;
@@ -63,4 +64,27 @@ export class FormularioClienteComponent {
     console.log(this.telP);
     console.log(this.corrP);
   }  
+   ngOnInit(): void {
+
+     this.forms.element.subscribe((res:any)=>{
+      if(res!=null){
+
+         this.addressForm.setControl('NombreP',new FormControl(res.nombreP))
+         this.addressForm.setControl('ApellidoP',new FormControl(res.apellidoP))
+         this.addressForm.setControl('DireccionP',new FormControl(res.direccionP))
+         this.addressForm.setControl('TelefonoP',new FormControl(res.telefonoP))
+         this.addressForm.setControl('CorreoP',new FormControl(res.correoP))
+         
+      }
+
+     }
+
+
+
+
+     )
+
+
+
+   }
 }
