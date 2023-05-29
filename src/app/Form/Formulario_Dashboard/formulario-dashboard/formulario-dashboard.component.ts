@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { Component,OnInit } from '@angular/core';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { FormsService } from 'src/app/Services/forms.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -7,7 +8,7 @@ import Swal from 'sweetalert2';
   templateUrl: './formulario-dashboard.component.html',
   styleUrls: ['./formulario-dashboard.component.css']
 })
-export class FormularioDashboardComponent {
+export class FormularioDashboardComponent implements OnInit {
   IdDis="";
   NomD="";
   LargD="";
@@ -28,7 +29,7 @@ export class FormularioDashboardComponent {
 
   hasUnitNumber = false;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private forms:FormsService) {}
 
   async onSubmit(){
     this.IdDis=this.addressForm.controls["IdDispositivo"].value;
@@ -66,4 +67,25 @@ export class FormularioDashboardComponent {
     console.log(this.PesoD);
     console.log(this.EmprD);
   }
+  
+  ngOnInit(): void {
+
+    this.forms.element.subscribe((res:any)=>{
+     if(res!=null){
+
+        this.addressForm.setControl('NombreD',new FormControl(res.nombreD))
+        this.addressForm.setControl('LargoD',new FormControl(res.largoD))
+        this.addressForm.setControl('AltoD',new FormControl(res.altoD))
+        this.addressForm.setControl('AnchoD',new FormControl(res.anchoD))
+        this.addressForm.setControl('PesoD',new FormControl(res.pesoD))
+        this.addressForm.setControl('EmprD',new FormControl(res.empresaD))
+
+     }
+
+    }
+
+    )
+
+  }
+
 }

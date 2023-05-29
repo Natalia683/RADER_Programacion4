@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { FormsService } from 'src/app/Services/forms.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -7,7 +8,7 @@ import Swal from 'sweetalert2';
   templateUrl: './formulario-historial.component.html',
   styleUrls: ['./formulario-historial.component.css']
 })
-   export class FormularioHistorialComponent {
+   export class FormularioHistorialComponent implements OnInit{
   IdHis:"";
   Fec:"";
   Nov:"";
@@ -31,7 +32,7 @@ import Swal from 'sweetalert2';
   hasUnitNumber = false;
 
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private forms:FormsService) {}
 
 
   async onSubmit(){
@@ -69,4 +70,23 @@ import Swal from 'sweetalert2';
     console.log(this.Comp);
     console.log(this.Usu);
   }  
+  ngOnInit(): void {
+
+    this.forms.element.subscribe((res:any)=>{
+     if(res!=null){
+
+        this.addressForm.setControl('FechaH',new FormControl(res.fechaH))
+        this.addressForm.setControl('NovedadH',new FormControl(res.novedadH))
+        this.addressForm.setControl('SugerenciausuarioH',new FormControl(res.sugerenciaUsuarioH))
+        this.addressForm.setControl('IncidenciasH',new FormControl(res.incidenciasH))
+        this.addressForm.setControl('ComponenteH',new FormControl(res.componenteH))
+        
+
+     }
+
+    }
+
+    )
+
+  }
 }

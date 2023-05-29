@@ -16,6 +16,7 @@ export class DashboardComponent implements OnInit{
   data:any [];
   modal: any;
   
+  
 constructor(public api:ApiService){
 
   this.dataSource=new MatTableDataSource();
@@ -39,6 +40,8 @@ await this.api.Get("Dispositivoes").then((res)=>{
 
 });
  this.modal=FormularioDashboardComponent;
+ 
+
 }
 
   

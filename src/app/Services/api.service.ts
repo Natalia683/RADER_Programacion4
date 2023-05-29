@@ -35,6 +35,7 @@ url= "https://localhost:7151/api/"
   }  
   async Delete(controller:string, id:string){
     var response: any
+    console.log(this.url+controller+"/"+id)
     await this.http.delete(this.url+controller+"/"+id).subscribe(res=>{
         response=res
 
