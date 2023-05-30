@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { FormsService } from 'src/app/Services/forms.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -7,7 +8,7 @@ import Swal from 'sweetalert2';
   templateUrl: './formulario-pqr.component.html',
   styleUrls: ['./formulario-pqr.component.css']
 })
-export class FormularioPQRComponent {
+export class FormularioPQRComponent implements OnInit {
     IdSol:""; 
     Tip:"";
     Desc:""; 
@@ -27,7 +28,7 @@ export class FormularioPQRComponent {
 
   
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private forms:FormsService) {}
 
 
   async onSubmit(){
@@ -69,4 +70,26 @@ export class FormularioPQRComponent {
     console.log(this.Disp);
     
   } 
+  ngOnInit(): void {
+
+    this.forms.element.subscribe((res:any)=>{
+     if(res!=null){
+
+        this.addressForm.setControl('TipoS',new FormControl(res.tipoS))
+        this.addressForm.setControl('DescripcionS',new FormControl(res.descripcionS))
+        this.addressForm.setControl('UsuarioS',new FormControl(res.usuarioS))
+        this.addressForm.setControl('DispositivoS',new FormControl(res.dispositivoS))
+        
+     }
+
+    }
+
+
+
+
+    )
+
+
+
+  }
 }
