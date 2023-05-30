@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { FormsService } from 'src/app/Services/forms.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -8,7 +9,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./formulario-inventario.component.css']
 })
 
-export class FormularioInventarioComponent {
+export class FormularioInventarioComponent implements OnInit {
   IdInv="";
   Descr="";
   Cant="";
@@ -27,7 +28,7 @@ export class FormularioInventarioComponent {
 
   hasUnitNumber = false;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private forms:FormsService) {}
 
   async onSubmit(){
     this.IdInv=this.addressForm.controls["IdInventario"].value;
@@ -63,4 +64,27 @@ export class FormularioInventarioComponent {
     console.log(this.Comp);
     console.log(this.Esta);
   }   
+  ngOnInit(): void {
+
+    this.forms.element.subscribe((res:any)=>{
+     if(res!=null){
+
+        this.addressForm.setControl('CantidadI',new FormControl(res.cantidadI))
+        this.addressForm.setControl('ComponenteI',new FormControl(res.componenteI))
+        this.addressForm.setControl('DescripcionI',new FormControl(res.descripcionI))
+        this.addressForm.setControl('EstadoI',new FormControl(res.estadoI))
+        this.addressForm.setControl('ProveedorI',new FormControl(res.proveedorI))
+        
+     }
+
+    }
+
+
+
+
+    )
+
+
+
+  }
 }

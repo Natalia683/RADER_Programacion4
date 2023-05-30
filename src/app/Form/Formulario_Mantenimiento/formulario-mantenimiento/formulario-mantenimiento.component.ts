@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { FormsService } from 'src/app/Services/forms.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -7,7 +8,7 @@ import Swal from 'sweetalert2';
   templateUrl: './formulario-mantenimiento.component.html',
   styleUrls: ['./formulario-mantenimiento.component.css']
 })
-export class FormularioMantenimientoComponent {
+export class FormularioMantenimientoComponent implements OnInit {
    IdMan:"";
    Est:"";
    FecM:"";
@@ -29,7 +30,7 @@ export class FormularioMantenimientoComponent {
 
   hasUnitNumber = false;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private forms:FormsService) {}
   
 
   async onSubmit(){
@@ -67,5 +68,28 @@ export class FormularioMantenimientoComponent {
     console.log(this.Enc);
     console.log(this.Disp);
   }   
+  ngOnInit(): void {
+
+    this.forms.element.subscribe((res:any)=>{
+     if(res!=null){
+
+        this.addressForm.setControl('EstadoM',new FormControl(res.estadoM))
+        this.addressForm.setControl('FechaRevisionM',new FormControl(res.fechaRevisionM))
+        this.addressForm.setControl('DescripcionM',new FormControl(res.descripcionM))
+        this.addressForm.setControl('EncargadoM',new FormControl(res.encargadoM))
+        this.addressForm.setControl('DispositivoM',new FormControl(res.dispositivoM))
+        
+     }
+
+    }
+
+
+
+
+    )
+
+
+
+  }
   
 }
