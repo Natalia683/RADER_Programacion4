@@ -28,6 +28,7 @@ export class TablaComponent implements AfterViewInit {
   @Input() ides:string;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
+  @Input () res:any[];
 
 
   constructor(public api: ApiService, public dialog: MatDialog,public forms:FormsService) {
@@ -70,6 +71,7 @@ export class TablaComponent implements AfterViewInit {
   public mostrarModal(element:any){
     this.forms.element.next(element)
     this.dialog.open(this.modal);
+
   }
 
   alerta(item:any){
@@ -89,6 +91,7 @@ export class TablaComponent implements AfterViewInit {
       console.log(this.component)
       this.api.Delete(this.component,id)
       Swal.fire('Saved!', '', 'success')
+      location.reload();
     } else if (result.isDenied) {
       Swal.fire('Changes are not saved', '', 'info')
     }
