@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { FormularioClienteComponent } from 'src/app/Form/Formulario_Cliente/formulario-cliente/formulario-cliente.component';
 import { ApiService } from 'src/app/Services/api.service';
+import { FormsService } from 'src/app/Services/forms.service';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-cliente',
@@ -14,7 +16,7 @@ export class ClienteComponent implements OnInit{
   dataSource: MatTableDataSource<any>;
   data:any []
 
-  constructor(public api: ApiService) {
+  constructor(public api: ApiService, private forms: FormsService, private dialog: MatDialog) {
     this.dataSource = new MatTableDataSource();
   }
 
@@ -33,7 +35,11 @@ export class ClienteComponent implements OnInit{
  
     this.modal=FormularioClienteComponent;
   }
+  
+  public crear(element:any){
+    this.forms.element.next(element)
+    this.dialog.open(this.modal);
 
- 
+  }
   
 }

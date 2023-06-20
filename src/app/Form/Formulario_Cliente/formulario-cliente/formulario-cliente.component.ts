@@ -1,20 +1,29 @@
-import { Component,OnInit } from '@angular/core';
+import { Component,OnInit, Input } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { FormsService } from 'src/app/Services/forms.service';
 import Swal from 'sweetalert2';
-
+import { ApiService } from 'src/app/Services/api.service';
+import { PersonaModel } from 'src/app/Models/Persona';
 @Component({
   selector: 'app-formulario-cliente',
   templateUrl: './formulario-cliente.component.html',
   styleUrls: ['./formulario-cliente.component.css']
 })
+
+
+
 export class FormularioClienteComponent implements OnInit {
+  @Input() modal:any;
+  @Input() component:string;
+  @Input() ides:string;
+
   IdPers="";
   nomP="";
   apellP="";
   dirP="";
   telP="";
   corrP="";
+ 
 
   addressForm = this.fb.group({
     IdPersona: [null, Validators.required],
@@ -28,7 +37,7 @@ export class FormularioClienteComponent implements OnInit {
 
   hasUnitNumber = false;
 
-  constructor(private fb: FormBuilder, private forms:FormsService) {}
+  constructor(private fb: FormBuilder, private forms:FormsService, public api :ApiService ) {}
 
   async onSubmit(){
     this.IdPers=this.addressForm.controls["IdPersona"].value;
@@ -38,15 +47,53 @@ export class FormularioClienteComponent implements OnInit {
     this.telP=this.addressForm.controls["TelefonoP"].value;
     this.corrP=this.addressForm.controls["CorreoP"].value;
 
-    if (this.nomP!==null && this.apellP!==null && this.dirP!==null && this.telP!==null && this.corrP!==null){
+    if (this.IdPers!==null && this.nomP!==null && this.apellP!==null && this.dirP!==null && this.telP!==null && this.corrP!==null){
+      
+      var body:PersonaModel=Object.assign({ "IdPersona": this.IdPers,
+      "NombreP":  this.nomP,
+      "ApellidoP":  this.apellP,
+      "DireccionP": this.dirP,
+      "TelefonoP": this.telP,
+      "CorreoP": this.corrP,
+      
+      });  
+
+      console.log(body);
+      this.api.Put('Personas',this.IdPers,body)
 
       Swal.fire(
         'Muy Bien',
         'Se ha logrado correctamente',
-        'success'
-    
+        'success',
+       
        )
-    }else{
+    }
+    else if (this.IdPers== null && this.nomP!==null && this.apellP!==null && this.dirP!==null && this.telP!==null && this.corrP!==null){
+      
+      var body:PersonaModel=Object.assign({
+      
+      "NombreP":  this.nomP,
+      "ApellidoP":  this.apellP,
+      "DireccionP": this.dirP,
+      "TelefonoP": this.telP,
+      "CorreoP": this.corrP
+      
+      });  
+
+      console.log(body);
+      this.api.Post('Personas',body)
+
+      Swal.fire(
+        'Muy Bien',
+        'Se ha logrado correctamente',
+        'success',
+       
+       )
+
+
+
+    }
+    else{
      
       Swal.fire({
       icon: 'error',
@@ -65,10 +112,10 @@ export class FormularioClienteComponent implements OnInit {
     console.log(this.corrP);
   }  
    ngOnInit(): void {
-
+      
      this.forms.element.subscribe((res:any)=>{
       if(res!=null){
-
+         this.addressForm.setControl('IdPersona',new FormControl(res.idPersona))
          this.addressForm.setControl('NombreP',new FormControl(res.nombreP))
          this.addressForm.setControl('ApellidoP',new FormControl(res.apellidoP))
          this.addressForm.setControl('DireccionP',new FormControl(res.direccionP))
@@ -76,7 +123,7 @@ export class FormularioClienteComponent implements OnInit {
          this.addressForm.setControl('CorreoP',new FormControl(res.correoP))
          
       }
-
+   
      }
 
 

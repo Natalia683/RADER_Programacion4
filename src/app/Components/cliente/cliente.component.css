@@ -8,3 +8,44 @@
 .editar {
     color: #216BED;
 }
+
+mat-icon.mat-icon.notranslate.crear.material-icons.mat-ligature-font.mat-icon-no-color {
+    color: #60e160;
+    font-size: 3vw;
+    position: fixed;
+    right: 9.4vw;
+    top: 4.5vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+mat-icon.mat-icon.notranslate.crear.material-icons.mat-ligature-font.mat-icon-no-color:hover {
+    color: #1aad1a;
+}
+
+.center-text {
+    text-align: -webkit-right;
+}
+
+.mat-icon {
+    -webkit-user-select: none;
+    user-select: none;
+    background-repeat: no-repeat;
+    display: inline-block;
+    fill: currentColor;
+    height: 60px;
+    width: 60px;
+    overflow: hidden;
+}
+.text-icon {
+    display: flex;
+    position: fixed;
+    font-size: 1.5vw;
+    position: fixed;
+    right: 14.4vw;
+    top: 5.6vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
