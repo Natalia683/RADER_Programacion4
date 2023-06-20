@@ -89,7 +89,8 @@ export class FormularioClienteComponent implements OnInit {
         'success',
        
        )
-
+      
+      
 
 
     }
@@ -110,6 +111,8 @@ export class FormularioClienteComponent implements OnInit {
     console.log(this.dirP);
     console.log(this.telP);
     console.log(this.corrP);
+
+    window.location.reload()
   }  
    ngOnInit(): void {
       
