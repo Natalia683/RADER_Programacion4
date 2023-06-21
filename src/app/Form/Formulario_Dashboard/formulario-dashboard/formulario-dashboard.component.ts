@@ -115,6 +115,8 @@ export class FormularioDashboardComponent implements OnInit {
     console.log(this.AnchoD);
     console.log(this.PesoD);
     console.log(this.EmprD);
+
+    window.location.reload()
   }
   
   ngOnInit(): void {

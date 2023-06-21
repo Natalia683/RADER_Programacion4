@@ -108,6 +108,7 @@ export class FormularioMantenimientoComponent implements OnInit {
     console.log(this.Desc);
     console.log(this.Enc);
     console.log(this.Disp);
+    window.location.reload()
   }   
   ngOnInit(): void {
 

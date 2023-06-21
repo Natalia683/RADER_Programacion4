@@ -107,6 +107,7 @@ export class FormularioPQRComponent implements OnInit {
     console.log(this.Desc);
     console.log(this.Usu);
     console.log(this.Disp);
+    window.location.reload()
     
   } 
   ngOnInit(): void {

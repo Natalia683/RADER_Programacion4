@@ -103,6 +103,8 @@ export class FormularioInventarioComponent implements OnInit {
     console.log(this.Prov);
     console.log(this.Comp);
     console.log(this.Esta);
+    window.location.reload()
+
   }   
   ngOnInit(): void {
 
