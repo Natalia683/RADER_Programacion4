@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { FormsService } from 'src/app/Services/forms.service';
 import Swal from 'sweetalert2';
+import { ApiService } from 'src/app/Services/api.service';
+import { SolicitudModel } from 'src/app/Models/Solicitud';
 
 @Component({
   selector: 'app-formulario-pqr',
@@ -9,6 +11,10 @@ import Swal from 'sweetalert2';
   styleUrls: ['./formulario-pqr.component.css']
 })
 export class FormularioPQRComponent implements OnInit {
+  @Input() modal:any;
+  @Input() component:string;
+  @Input() ides:string;
+
     IdSol:""; 
     Tip:"";
     Desc:""; 
@@ -28,7 +34,7 @@ export class FormularioPQRComponent implements OnInit {
 
   
 
-  constructor(private fb: FormBuilder, private forms:FormsService) {}
+  constructor(private fb: FormBuilder, private forms:FormsService, public api :ApiService) {}
 
 
   async onSubmit(){
@@ -38,8 +44,41 @@ export class FormularioPQRComponent implements OnInit {
     this.Usu=this.addressForm.controls["UsuarioS"].value;
     this.Disp=this.addressForm.controls["DispositivoS"].value;
     
-    if(this.Tip!== null && this.Desc!== null && this.Usu!== null && this.Disp!==null){
+    if(this.IdSol!==null && this.Tip!== null && this.Desc!== null && this.Usu!== null && this.Disp!==null){
     
+      var body:SolicitudModel=Object.assign({ "IdSolicitud": this.IdSol,
+      "TipoS":  this.Tip,
+      "DescripcionS":  this.Desc,
+      "UsuarioS": this.Usu,
+      "DispositivoS": this.Disp,
+      
+      });  
+
+      console.log(body);
+      this.api.Put('Solicituds',this.IdSol,body)
+
+      Swal.fire(
+        'Muy Bien',
+        'Se ha logrado correctamente',
+        'success',
+       
+       )
+    }
+    else if (this.IdSol==null && this.Tip!== null && this.Desc!== null && this.Usu!== null && this.Disp!==null){
+      
+      var body:SolicitudModel=Object.assign({
+      
+        "TipoS":  this.Tip,
+        "DescripcionS":  this.Desc,
+        "UsuarioS": this.Usu,
+        "DispositivoS": this.Disp,
+      
+      });  
+
+      console.log(body);
+      this.api.Post('Solicituds',body)
+
+
       Swal.fire(
         'Muy Bien',
         'Se ha logrado correctamente',
@@ -75,6 +114,7 @@ export class FormularioPQRComponent implements OnInit {
     this.forms.element.subscribe((res:any)=>{
      if(res!=null){
 
+        this.addressForm.setControl('IdSolicitud',new FormControl(res.idSolicitud))
         this.addressForm.setControl('TipoS',new FormControl(res.tipoS))
         this.addressForm.setControl('DescripcionS',new FormControl(res.descripcionS))
         this.addressForm.setControl('UsuarioS',new FormControl(res.usuarioS))

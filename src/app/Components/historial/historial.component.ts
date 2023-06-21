@@ -2,6 +2,8 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { FormularioHistorialComponent } from 'src/app/Form/Formulario_Historial/formulario-historial/formulario-historial.component';
 import { ApiService } from 'src/app/Services/api.service';
+import { FormsService } from 'src/app/Services/forms.service';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-historial',
@@ -17,7 +19,7 @@ export class HistorialComponent implements OnInit{
   data:any []
 
 
-  constructor(public api: ApiService) {
+  constructor(public api: ApiService, private forms: FormsService, private dialog: MatDialog) {
     this.dataSource = new MatTableDataSource();
   }
 
@@ -34,5 +36,11 @@ export class HistorialComponent implements OnInit{
     });
 
     this.modal=FormularioHistorialComponent;
+  }
+  
+  public crear(element:any){
+    this.forms.element.next(element)
+    this.dialog.open(this.modal);
+
   }
 }

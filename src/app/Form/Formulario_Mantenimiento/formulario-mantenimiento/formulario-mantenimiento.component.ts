@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { FormsService } from 'src/app/Services/forms.service';
 import Swal from 'sweetalert2';
+import { ApiService } from 'src/app/Services/api.service';
+import { MantenimientoModel } from 'src/app/Models/Mantenimiento';
+
 
 @Component({
   selector: 'app-formulario-mantenimiento',
@@ -9,6 +12,10 @@ import Swal from 'sweetalert2';
   styleUrls: ['./formulario-mantenimiento.component.css']
 })
 export class FormularioMantenimientoComponent implements OnInit {
+  @Input() modal:any;
+  @Input() component:string;
+  @Input() ides:string;
+
    IdMan:"";
    Est:"";
    FecM:"";
@@ -30,7 +37,7 @@ export class FormularioMantenimientoComponent implements OnInit {
 
   hasUnitNumber = false;
 
-  constructor(private fb: FormBuilder, private forms:FormsService) {}
+  constructor(private fb: FormBuilder, private forms:FormsService, public api :ApiService) {}
   
 
   async onSubmit(){
@@ -42,7 +49,41 @@ export class FormularioMantenimientoComponent implements OnInit {
     this.Disp=this.addressForm.controls["DispositivoM"].value;
 
 
-    if (this.Est!==null && this.Est!==null && this.FecM!==null && this.Desc!==null && this.Enc!==null && this.Disp!==null){
+    if (this.IdMan!==null && this.Est!==null && this.Est!==null && this.FecM!==null && this.Desc!==null && this.Enc!==null && this.Disp!==null){
+
+      var body:MantenimientoModel=Object.assign({ "IdMantenimiento": this.IdMan,
+      "EstadoM":  this.Est,
+      "FechaRevisionM":  this.FecM,
+      "DescripcionM": this.Desc,
+      "EncargadoM": this.Enc,
+      "DispositivoM": this.Disp,
+      
+      });  
+
+      console.log(body);
+      this.api.Put('Mantenimientoes',this.IdMan,body)
+
+      Swal.fire(
+        'Muy Bien',
+        'Se ha logrado correctamente',
+        'success',
+       
+       )
+    }
+    else if (this.IdMan==null && this.Est!==null && this.Est!==null && this.FecM!==null && this.Desc!==null && this.Enc!==null && this.Disp!==null){
+      
+      var body:MantenimientoModel=Object.assign({
+      
+        "EstadoM":  this.Est,
+        "FechaRevisionM":  this.FecM,
+        "DescripcionM": this.Desc,
+        "EncargadoM": this.Enc,
+        "DispositivoM": this.Disp,
+      
+      });  
+
+      console.log(body);
+      this.api.Post('Mantenimientoes',body)
 
       Swal.fire(
         'Muy Bien',
@@ -73,6 +114,7 @@ export class FormularioMantenimientoComponent implements OnInit {
     this.forms.element.subscribe((res:any)=>{
      if(res!=null){
 
+        this.addressForm.setControl('IdMantenimiento',new FormControl(res.idMantenimiento))
         this.addressForm.setControl('EstadoM',new FormControl(res.estadoM))
         this.addressForm.setControl('FechaRevisionM',new FormControl(res.fechaRevisionM))
         this.addressForm.setControl('DescripcionM',new FormControl(res.descripcionM))
