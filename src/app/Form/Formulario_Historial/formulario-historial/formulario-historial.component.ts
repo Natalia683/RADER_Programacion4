@@ -112,6 +112,8 @@ import { HistorialModel } from 'src/app/Models/Historial';
     console.log(this.Inc);
     console.log(this.Comp);
     console.log(this.Usu);
+    window.location.reload()
+
   }  
   ngOnInit(): void {
 
