@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { FormularioInventarioComponent } from 'src/app/Form/Formulario_Inventario/formulario-inventario/formulario-inventario.component';
 import { ApiService } from 'src/app/Services/api.service';
+import { FormsService } from 'src/app/Services/forms.service';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-inventario',
@@ -16,7 +18,7 @@ export class InventarioComponent implements OnInit{
   dataSource: MatTableDataSource<any>;
   data:any [];
 
-constructor(public api:ApiService){
+constructor(public api:ApiService, private forms: FormsService, private dialog: MatDialog){
 
   this.dataSource=new MatTableDataSource();
 }
@@ -35,6 +37,12 @@ constructor(public api:ApiService){
     });
 
     this.modal=FormularioInventarioComponent;
+  }
+
+  public crear(element:any){
+    this.forms.element.next(element)
+    this.dialog.open(this.modal);
+
   }
 
 
